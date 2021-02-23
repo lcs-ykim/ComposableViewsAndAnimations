@@ -28,7 +28,7 @@ struct IAExampleThreeView: View {
 
     // List all fonts available
     // NOTE: This is a very useful gist...
-    //       https://gist.github.com/kristopherjohnson/c825cb97b1ad1fe0bc13d709986d0763
+    //    https://gist.github.com/kristopherjohnson/c825cb97b1ad1fe0bc13d709986d0763
     private static let fontNames: [String] = {
         var names: [String] = []
         for familyName in UIFont.familyNames {
@@ -51,8 +51,9 @@ struct IAExampleThreeView: View {
                     }
                 // When useAnimation is true, the default animation effect will be used.
                 // When useAnimation is false, there will be no animation.
-                    .animation(useAnimation ? .default : .none)
-                
+//                    .animation(useAnimation ? .default : .none)
+                    .animation(.default)
+
             }
             .navigationTitle("Example 3")
             .toolbar {
