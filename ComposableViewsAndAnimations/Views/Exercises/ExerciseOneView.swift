@@ -15,23 +15,20 @@ struct ExerciseOneView: View {
     // Controls whether this view is showing or not
     @Binding var showThisView: Bool
     
-    // Controls what typeface the text is shown in
-    @State private var typeFace: String = "Flying text"
-    
     // Initialize a timer that will fire in one second
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     // Whether to apply the animation
     @State private var useAnimation = false
     
-    // Controls the size
-    @State private var fontSize: CGFloat = 30.0
-    
     // Controls the position
     @State private var offSet: CGFloat = -200.0
     
-    // Controls the hue of the text
+    // Controls the hue of the circle
     @State private var hue: Color = .black
+    
+    // Controls the size of the circle
+    @State private var scaleFactor: Double = 1.0
     
     // MARK: Computed properties
     
@@ -52,32 +49,32 @@ struct ExerciseOneView: View {
             
             VStack {
                 
-                Text(typeFace)
+                Circle()
+                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
                     .foregroundColor(hue)
-                    .font(.custom(typeFace, size: fontSize))
-                    .border(Color.blue, width: 1.0)
                     .offset(x: 0, y: offSet)
+                    .scaleEffect(scaleFactor)
                     .onTapGesture {
-                        if fontSize < 45.0 {
-                            // Reduce the size of the circle by a tenth
-                            fontSize += 5
-                        } else {
-                            // Make sure the button doesn't entirely disappear
-                            fontSize = 30.0
-                        }
                         
                         if offSet < 200.0 {
-                            // Reduce the size of the circle by a tenth
+
                             offSet += 50.0
+                            
                         } else {
-                            // Make sure the button doesn't entirely disappear
+
                             offSet = -200.0
                         }
-                                                
-                        hue = Color(hue: Double.random(in: 1...360) / 360.0,
-                                    saturation: 0.8,
-                                    brightness: 0.8)
                         
+                        if scaleFactor < 3.0 {
+                            scaleFactor += 0.25
+                        } else {
+                            scaleFactor = 1.0
+                        }
+                        
+                
+                            hue = Color(hue: Double.random(in: 1...360) / 360.0,
+                                        saturation: 0.8,
+                                        brightness: 0.8)
                         
                     }
                     
