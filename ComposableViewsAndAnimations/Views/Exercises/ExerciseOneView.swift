@@ -28,7 +28,7 @@ struct ExerciseOneView: View {
     @State private var hue: Color = .black
     
     // Controls the size of the circle
-    @State private var scaleFactor: Double = 1.0
+    @State private var scaleFactor: CGFloat = 1.0
     
     // MARK: Computed properties
     
@@ -51,9 +51,9 @@ struct ExerciseOneView: View {
                 
                 Circle()
                     .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                    .scaleEffect(scaleFactor)
                     .foregroundColor(hue)
                     .offset(x: 0, y: offSet)
-                    .scaleEffect(scaleFactor)
                     .onTapGesture {
                         
                         if offSet < 200.0 {

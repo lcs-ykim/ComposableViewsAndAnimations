@@ -77,6 +77,7 @@ struct IAExampleOneView: View {
         showThisView = false
     }
     
+    
 }
 
 struct IAExampleOneView_Previews: PreviewProvider {
